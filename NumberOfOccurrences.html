@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>This is the second assignment of javascript in webonise</title>
+
+</head>
+<body>
+<br/><br/><br/>
+<label for="inputString">Enter numbers separated by commas</label><input type="text" id="inputString">
+<button type="button" onclick="getOccurrences()" id="buttonOne">Get result</button>
+
+<script>
+    function getOccurrences(){
+        let inputFromUser=document.getElementById("inputString").value;
+        let splitInput=inputFromUser.split(",");
+        let count=0;
+        for(let indexOne=0;indexOne<splitInput.length;indexOne++){
+            for(let indexTwo=0;indexTwo<splitInput.length;indexTwo++){
+                if(splitInput[indexOne]===splitInput[indexTwo]){
+                    count++;
+                }
+            }document.write(splitInput[indexOne]+" : "+count+"<br/>");
+            count=0;
+        }
+    }
+
+</script>
+
+</body>
+</html>
