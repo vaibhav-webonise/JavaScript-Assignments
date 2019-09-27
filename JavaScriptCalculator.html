@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>First javascript assignment in Webonise</title>
+    <script>
+        function getSubtractionResult() {
+            const input = document.getElementById("number1");
+            const inputTwo = document.getElementById("number2");
+            const subtraction = parseInt(input.value) - parseInt(inputTwo.value);
+            alert("The difference is:"+subtraction);
+        }
+
+        function getAdditionResult() {
+            const input = document.getElementById("number1");
+            const inputTwo = document.getElementById("number2");
+            const addition = parseInt(input.value) + parseInt(inputTwo.value);
+            alert("The sum is:"+addition);
+        }
+    </script>
+</head>
+<body>
+<label for="number1">Number 1:</label><input type="number" placeholder="enter first number here" id="number1">
+<label for="number2">Number 2:</label><input type="number" placeholder="enter second number here" id="number2">
+<button type="button" onclick="getSubtractionResult()">Subtraction</button>
+<button type="button" onclick="getAdditionResult()">Addition</button>
+</body>
+</html>
