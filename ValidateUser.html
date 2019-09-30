@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="get">
+    <label for="nameOfUser">User Name :</label><input type="text" id="nameOfUser">
+    <label for="emailOfUser">Email Id :</label><input type="email" id="emailOfUser">
+    <button type="button" onclick="logIn()">Submit</button>
+    <button type="button" onclick="getData()">Show data</button>
+</form>
+
+<script>
+    let nameOfUser = [];
+    let emailOfUser = [];
+    let currentTime = [];
+
+    function logIn() {
+        let userName = document.getElementById("nameOfUser").value;
+        let userEmail = document.getElementById("emailOfUser").value;
+        if (userName === '' || userEmail === '') {
+            alert("Field can not be empty...");
+        } else {
+            currentTime.push(new Date());
+            nameOfUser.push(userName);
+            emailOfUser.push(userEmail);
+            alert("data submitted successfully");
+        }
+
+    }
+
+    function getData() {
+        if (nameOfUser.length === 0) {
+            alert("No data submitted yet..");
+        } else {
+            for (let index = 0; index < nameOfUser.length; index++) {
+                document.write("<b>User Name :</b> " + nameOfUser[index]);
+                document.write("</br><b>User Email :</b>" + emailOfUser[index]);
+                document.write("</br><b>Timestamp :</b>" + currentTime[index] + "</br>");
+            }
+        }
+
+    }
+</script>
+</body>
+</html>
