@@ -12,16 +12,34 @@
     function getOccurrences() {
         let inputFromUser = document.getElementById('inputString').value;
         let splitInput = inputFromUser.split(',');
-        let count = 0;
+        let countOccurrence = 0;
+        let mapForDistinctKeys = new Map();
+
         for (let indexOne = 0; indexOne < splitInput.length; indexOne++) {
             for (let indexTwo = 0; indexTwo < splitInput.length; indexTwo++) {
                 if (splitInput[indexOne] === splitInput[indexTwo]) {
-                    count++;
+                    countOccurrence++;
                 }
             }
-            document.write(splitInput[indexOne] + ':' + count + '<br/>');
-            count = 0;
+            mapForDistinctKeys.set(splitInput[indexOne], countOccurrence);
+            countOccurrence = 0;
         }
+
+        let allKeys = [];
+        mapForDistinctKeys.forEach(function (value, key) {
+            allKeys.push(key);
+        });
+
+        allKeys.sort();
+        let sortedMap = new Map();
+
+        for (let i = 0; i < allKeys.length; i++) {
+            sortedMap.set(allKeys[i], mapForDistinctKeys.get(allKeys[i]));
+        }
+
+        sortedMap.forEach(function (value, key) {
+            document.write("</br>" + key + ":   " + value);
+        });
     }
 </script>
 </body>
