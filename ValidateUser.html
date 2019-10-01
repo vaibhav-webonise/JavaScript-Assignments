@@ -13,9 +13,7 @@
 </form>
 
 <script>
-    let nameOfUser = [];
-    let emailOfUser = [];
-    let currentTime = [];
+    sessionStorage = [];
 
     function logIn() {
         let userName = document.getElementById("nameOfUser").value;
@@ -23,25 +21,23 @@
         if (userName === '' || userEmail === '') {
             alert("Field can not be empty...");
         } else {
-            currentTime.push(new Date());
-            nameOfUser.push(userName);
-            emailOfUser.push(userEmail);
+            window.sessionStorage.setItem("currentTime", JSON.stringify(new Date()));
+            window.sessionStorage.setItem("userName", JSON.stringify(userName));
+            window.sessionStorage.setItem("userEmail", JSON.stringify(userEmail));
             alert("data submitted successfully");
         }
-
     }
 
     function getData() {
-        if (nameOfUser.length === 0) {
-            alert("No data submitted yet..");
-        } else {
-            for (let index = 0; index < nameOfUser.length; index++) {
-                document.write("<b>User Name :</b> " + nameOfUser[index]);
-                document.write("</br><b>User Email :</b>" + emailOfUser[index]);
-                document.write("</br><b>Timestamp :</b>" + currentTime[index] + "</br>");
-            }
+        for (let i = 0; i < sessionStorage.length; i++) ;
+        {
+            let currentTime = JSON.parse(sessionStorage.getItem("currentTime"));
+            let userEmail = JSON.parse(sessionStorage.getItem("userEmail"));
+            let userName = JSON.parse(sessionStorage.getItem("userName"));
+            document.write("<b>User Name :</b> " + userName);
+            document.write("</br><b>User Email :</b>" + userEmail);
+            document.write("</br><b>Timestamp :</b>" + currentTime + "</br>");
         }
-
     }
 </script>
 </body>
