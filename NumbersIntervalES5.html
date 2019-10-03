@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<script>
-    for (var i = 1; i <= 10; i++) {
-        displayNumbers(i);
-    }
+    <head>
+        <meta charset="UTF-8">
+        <title>Using ES5</title>
+        <script>
+            for (var index = 1; index <= 10; index++) {
+                displayNumbers(index);
+            }
 
-    function displayNumbers(i) {
-        setTimeout(function () {
-            document.write("</br>"+i);
-        }, i * 1000);
-    }
-</script>
-</body>
+            function displayNumbers(index) {
+                setTimeout(function () {
+                    document.write('</br>' + index);
+                }, index * 1000);
+            }
+        </script>
+    </head>
+    <body>
+    </body>
 </html>
