@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Addition</title>
+        <script>
+            function getData(){
+                let numberOne=parseInt(document.getElementById('numberOne').value);
+                let numberTwo=parseInt(document.getElementById('numberTwo').value);
+
+                let additionResult = addTwoNumbers(numberOne,numberTwo);
+                additionResult.then(function (result) {
+                    alert(`Result of addition is:: ${result}`);
+                }).catch(function (errorMessage) {
+                    alert(errorMessage);
+                });
+            }
+
+            function addTwoNumbers(numberOne, numberTwo) {
+                    return new Promise(function (resolve, reject) {
+                        if (!isNaN(numberTwo) && !isNaN(numberOne)){
+                            resolve(numberOne+numberTwo);
+                        }
+                        else {
+                            reject("Input is not valid...");
+                        }
+                    });
+            }
+        </script>
+    </head>
+    <body>
+        <label for="numberOne">Enter number one </label><input type="number" id="numberOne">
+        <label for="numberTwo"></label><input type="number" id="numberTwo">
+        <button type="button" id="addition" onclick="getData()">Add numbers</button>
+    </body>
+</html>
