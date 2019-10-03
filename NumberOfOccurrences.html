@@ -7,9 +7,14 @@
             function getOccurrences() {
                 let inputFromUser = document.getElementById('inputString').value;
                 let splitInput = inputFromUser.split(',');
+                let flag=false;
+                for(let iterateSplitInput=0;iterateSplitInput<splitInput.length;iterateSplitInput){
+                    if(isNaN(splitInput[iterateSplitInput])){
+                        flag=true;
+                    }
+                }
                 let countOccurrence = 0;
                 let mapForDistinctKeys = new Map();
-                let flag = true;
 
                 for (let indexOne = 0; indexOne < splitInput.length; indexOne++) {
                     for (let indexTwo = 0; indexTwo < splitInput.length; indexTwo++) {
@@ -17,9 +22,6 @@
                             countOccurrence++;
                         }
                     }
-                    if (isNaN(splitInput[indexOne])) {
-                        flag = false;
-                    } else {
                         mapForDistinctKeys.set(splitInput[indexOne], countOccurrence);
                         countOccurrence = 0;
                     }
@@ -37,7 +39,7 @@
                     sortedMap.set(allKeys[i], mapForDistinctKeys.get(allKeys[i]));
                 }
 
-                if (flag === true && allKeys.length > 1) {
+                if (allKeys.length > 1) {
                     sortedMap.forEach(function (value, key) {
                         document.write(`</br> ${key}: ${value}`);
                     });
@@ -45,7 +47,6 @@
                 else {
                     alert('Input should be in proper format..');
                 }
-            }
         </script>
     </head>
     <body>
