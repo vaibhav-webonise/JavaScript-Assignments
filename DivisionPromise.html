@@ -8,16 +8,15 @@
                 let numberOne = parseInt(document.getElementById('numberOne').value);
                 let numberTwo = parseInt(document.getElementById('numberTwo').value);
 
-                let additionResult = divideTwoNumbers(numberOne, numberTwo);
-                additionResult.then(function (result) {
+                divideTwoNumbers(numberOne, numberTwo).then((result) => {
                     alert(`Result of division is:: ${result}`);
-                }).catch(function (errorMessage) {
+                }).catch((errorMessage) => {
                     alert(errorMessage);
                 });
             }
 
             function divideTwoNumbers(numberOne, numberTwo) {
-                return new Promise(function (resolve, reject) {
+                return new Promise((resolve, reject) => {
                     if (isNaN(numberTwo) || isNaN(numberOne)) {
                         reject('Input is not valid...');
                     } else if (numberTwo === 0) {

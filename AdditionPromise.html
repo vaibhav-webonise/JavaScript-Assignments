@@ -4,27 +4,25 @@
         <meta charset="UTF-8">
         <title>Addition</title>
         <script>
-            function getData(){
-                let numberOne=parseInt(document.getElementById('numberOne').value);
-                let numberTwo=parseInt(document.getElementById('numberTwo').value);
+            function getData() {
+                let numberOne = parseInt(document.getElementById('numberOne').value);
+                let numberTwo = parseInt(document.getElementById('numberTwo').value);
 
-                let additionResult = addTwoNumbers(numberOne,numberTwo);
-                additionResult.then(function (result) {
+                addTwoNumbers(numberOne, numberTwo).then((result) => {
                     alert(`Result of addition is:: ${result}`);
-                }).catch(function (errorMessage) {
+                }).catch((errorMessage) => {
                     alert(errorMessage);
                 });
             }
 
             function addTwoNumbers(numberOne, numberTwo) {
-                    return new Promise(function (resolve, reject) {
-                        if (!isNaN(numberTwo) && !isNaN(numberOne)){
-                            resolve(numberOne+numberTwo);
-                        }
-                        else {
-                            reject("Input is not valid...");
-                        }
-                    });
+                return new Promise((resolve, reject) => {
+                    if (!isNaN(numberTwo) && !isNaN(numberOne)) {
+                        resolve(numberOne + numberTwo);
+                    } else {
+                        reject("Input is not valid...");
+                    }
+                });
             }
         </script>
     </head>
