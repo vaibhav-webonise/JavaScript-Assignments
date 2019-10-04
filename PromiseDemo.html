@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script>
+            promiseByDelay().then(function () {
+                alert('Success...');
+            }).catch(function () {
+                alert('Error...');
+            });
+
+            function promiseByDelay(milliSeconds) {
+                return new Promise(function (resolve, reject) {
+                    if (milliSeconds !== undefined) {
+                        setTimeout(() => {
+                        }, milliSeconds);
+                        resolve();
+                    } else {
+                        reject();
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
