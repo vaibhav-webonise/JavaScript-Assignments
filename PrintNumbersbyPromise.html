@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Print numbers by promise</title>
+        <script>
+            displayNumbers(10).then(() => {
+                document.write("starting numbers printing...");
+            }).catch(() => {
+                document.write('Error while printing numbers...');
+            })
+
+            function displayNumbers(number) {
+                return new Promise(function (resolve, reject) {
+                    if (number !== undefined) {
+                        for (let index = 1; index <= number; index++) {
+                            setTimeout(() => {
+                                document.write(`</br> ${index}`);
+                            }, index * 1000)
+                        }
+                        resolve();
+                    } else {
+                        reject();
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
