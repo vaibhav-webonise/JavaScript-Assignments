@@ -2,17 +2,19 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Title</title>
+        <title>Delay example</title>
         <script>
-            promiseByDelay().then(function () {
-                alert('Success...');
-            }).catch(function () {
-                alert('Error...');
-            });
-
+            function doOperation() {
+                let timeInMilliseconds = document.getElementById('timeInMilliSeconds').value;
+                promiseByDelay(timeInMilliseconds).then(() => {
+                    alert('Success...');
+                }).catch(() => {
+                    alert('Error...');
+                });
+            }
             function promiseByDelay(milliSeconds) {
-                return new Promise(function (resolve, reject) {
-                    if (milliSeconds !== undefined) {
+                return new Promise((resolve, reject) => {
+                    if (milliSeconds !== '') {
                         setTimeout(() => {
                         }, milliSeconds);
                         resolve();
@@ -24,5 +26,7 @@
         </script>
     </head>
     <body>
+        <label for="timeInMilliSeconds">Enter time in milliseconds </label><input type="number" id="timeInMilliSeconds"/>
+        <input type="button" value="submit" onclick="doOperation()"/>
     </body>
 </html>
