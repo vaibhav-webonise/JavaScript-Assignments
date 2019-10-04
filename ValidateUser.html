@@ -1,0 +1,67 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script>
+            function logIn() {
+                let userName = document.getElementById('nameOfUser').value;
+                let userEmail = document.getElementById('emailOfUser').value;
+                if (userName === '' || userEmail === '') {
+                    alert('Field can not be empty...');
+                } else {
+                    if (checkIfExist(userEmail)) {
+                        let StoreUserData = localStorage.getItem('data');
+                        if (StoreUserData == null) {
+                            StoreUserData = [];
+                        } else {
+                            StoreUserData = JSON.parse(StoreUserData);
+                        }
+                        StoreUserData.push({userName: userName, userEmail: userEmail, date: new Date()});
+                        localStorage.setItem('data', JSON.stringify(StoreUserData));
+                        alert('Data submitted successfully');
+                    } else {
+                        alert('Email already exists');
+                    }
+                }
+            }
+
+            function getData() {
+                let data = localStorage.getItem('data');
+                if (data == null) {
+                    alert('No Data');
+                } else {
+                    data = JSON.parse(data);
+                    for (let i = 0; i < data.length; i++) {
+                        document.write(`<br><b>User Name :</b> ${data[i].userName}`);
+                        document.write(`</br><b>User Email :</b>${data[i].userEmail}`);
+                        document.write(`</br><b>Timestamp :</b> ${data[i].date} </br>`);
+                        document.write('--------------------------------------------------');
+                    }
+                }
+            }
+
+            function checkIfExist(email) {
+                let data = localStorage.getItem('data');
+                if (data !== null) {
+                    data = JSON.parse(data);
+                    for (let i = 0; i < data.length; i++) {
+                        if (data[i].userEmail === email) {
+                            return false;
+                        }
+                    }
+                } else {
+                    return true;
+                }
+                return true;
+            }
+        </script>
+    </head>
+    <body>
+        <form method="get">
+        <label for="nameOfUser">User Name :</label><input type="text" id="nameOfUser">
+        <label for="emailOfUser">Email Id :</label><input type="email" id="emailOfUser">
+        <button type="button" onclick="logIn()">Submit</button>
+        <button type="button" onclick="getData()">Show data</button>
+        </form>
+    </body>
+</html>

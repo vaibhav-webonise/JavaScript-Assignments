@@ -1,0 +1,51 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>This is my third assignment in webonise</title>
+        <script>
+            let tabArray = [];
+            let isValid = true;
+            let tabCounter = 0;
+
+            function stopTab() {
+                const closeTabInterval = setInterval(function () {
+                    if (tabArray.length !== 0 && isValid !== false) {
+                        const wd = tabArray.pop();
+                        wd.close();
+                    } else {
+                        clearInterval(closeTabInterval);
+                        return;
+                    }
+                }, 3000);
+            }
+
+            function openTab() {
+                let openTabInterval = setInterval(function () {
+                    tabCounter++;
+                    if (tabCounter > 5 || isValid === false) {
+                        clearInterval(openTabInterval);
+                        stopTab();
+                        return;
+                    } else {
+                        tabArray.push(window.open());
+                    }
+                }, 3000);
+            }
+
+            function start() {
+                tabArray = [];
+                tabCounter = 0;
+                isValid = true;
+                openTab();
+            }
+
+            function stop() {
+                isValid = false;
+            }
+        </script>
+    </head>
+    <body>
+        <button type="button" id="buttonStart" onclick="start()">Open tabs</button>
+        <button type="button" id="buttonStop" onclick="stop()">Stop execution</button>
+    </body>
+</html>
