@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Using ES5</title>
+        <script>
+            for (var index = 1; index <= 10; index++) {
+                displayNumbers(index);
+            }
+
+            function displayNumbers(index) {
+                setTimeout(function () {
+                    document.write('</br>' + index);
+                }, index * 1000);
+            }
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Using ES6</title>
+        <script>
+            const displayNumbers = (number) => {
+                for (let index = 1; index <= number; index++) {
+                    setTimeout(() => {
+                        document.write(`</br> ${index}`);
+                    }, index * 1000)
+                }
+            }
+            displayNumbers(10);
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
