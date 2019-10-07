@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Division</title>
+        <script>
+            function getData() {
+                const numberOne = parseInt(document.getElementById('numberOne').value);
+                const numberTwo = parseInt(document.getElementById('numberTwo').value);
+
+                divideTwoNumbers(numberOne, numberTwo).then((result) => {
+                    alert(`Result of division is:: ${result}`);
+                }).catch((errorMessage) => {
+                    alert(errorMessage);
+                });
+            }
+
+            function divideTwoNumbers(numberOne, numberTwo) {
+                return new Promise((resolve, reject) => {
+                    if (isNaN(numberTwo) || isNaN(numberOne)) {
+                        reject('Input is not valid...');
+                    } else if (numberTwo === 0) {
+                        reject('can not divide by zero...');
+                    } else {
+                        resolve(numberOne / numberTwo);
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <label for="numberOne">Enter number one </label><input type="number" id="numberOne">
+        <label for="numberTwo"></label><input type="number" id="numberTwo">
+        <button type="button" id="division" onclick="getData()">Divide numbers</button>
+    </body>
+</html>

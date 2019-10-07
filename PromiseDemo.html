@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Delay example</title>
+        <script>
+            function doOperation() {
+                const timeInMilliseconds = document.getElementById('timeInMilliSeconds').value;
+                promiseByDelay(timeInMilliseconds).then(() => {
+                    alert('Success...');
+                }).catch(() => {
+                    alert('Not getting time interval to execute..');
+                });
+            }
+
+            function promiseByDelay(milliSeconds) {
+                return new Promise((resolve, reject) => {
+                    if (milliSeconds !== '')
+                    {
+                        setTimeout(() => {
+                            resolve();
+                        }, milliSeconds);
+                    }
+                    else{
+                        reject();
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <label for="timeInMilliSeconds">Enter time in milliseconds </label><input type="number" id="timeInMilliSeconds"/>
+        <input type="button" value="submit" onclick="doOperation()"/>
+    </body>
+</html>
