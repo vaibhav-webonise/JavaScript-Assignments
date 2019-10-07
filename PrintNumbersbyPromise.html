@@ -5,13 +5,14 @@
         <title>Print numbers by promise</title>
         <script>
             function performOperation() {
-                let numberByUser = document.getElementById('numberByUser').value;
+                const numberByUser = document.getElementById('numberByUser').value;
                 displayNumbers(numberByUser).then(() => {
                     document.write("starting numbers printing...");
                 }).catch(() => {
                     document.write('Error while printing numbers...');
                 })
             }
+
             function displayNumbers(number) {
                 return new Promise((resolve, reject) => {
                     if (number !== '') {

@@ -5,7 +5,7 @@
         <title>Delay example</title>
         <script>
             function doOperation() {
-                let timeInMilliseconds = document.getElementById('timeInMilliSeconds').value;
+                const timeInMilliseconds = document.getElementById('timeInMilliSeconds').value;
                 promiseByDelay(timeInMilliseconds).then(() => {
                     alert('Success...');
                 }).catch(() => {

@@ -5,8 +5,8 @@
         <title>Addition</title>
         <script>
             function getData() {
-                let numberOne = parseInt(document.getElementById('numberOne').value);
-                let numberTwo = parseInt(document.getElementById('numberTwo').value);
+                const numberOne = parseInt(document.getElementById('numberOne').value);
+                const numberTwo = parseInt(document.getElementById('numberTwo').value);
 
                 addTwoNumbers(numberOne, numberTwo).then((result) => {
                     alert(`Result of addition is:: ${result}`);
