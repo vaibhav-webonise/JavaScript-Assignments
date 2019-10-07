@@ -9,19 +9,21 @@
                 promiseByDelay(timeInMilliseconds).then(() => {
                     alert('Success...');
                 }).catch(() => {
-                    alert('Error...');
+                    alert('Not getting time interval to execute..');
                 });
             }
 
             function promiseByDelay(milliSeconds) {
                 return new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                        if (milliSeconds !== '') {
+                    if (milliSeconds !== '')
+                    {
+                        setTimeout(() => {
                             resolve();
-                        } else {
-                            reject();
-                        }
-                    }, milliSeconds);
+                        }, milliSeconds);
+                    }
+                    else{
+                        reject();
+                    }
                 });
             }
         </script>
