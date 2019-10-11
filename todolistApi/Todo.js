@@ -9,10 +9,10 @@ export class Todo extends React.Component {
         this.state = {
             desc: "",
             todos: [],
-            flag: 0
-
+            updateFlag: false,
+            id: 1,
+            buttonText: "Add"
         };
-        this.id = 0;
     }
 
     componentDidMount() {
@@ -36,79 +36,92 @@ export class Todo extends React.Component {
     };
 
     onAddTodo = () => {
+        if (this.state.desc === '') {
+            alert('Fields can not be empty..');
+        }
+        else {
 
-        let desc = this.state.desc;
-        axios({
-            method: "post",
-            url: "http://localhost:5000/todos",
-            data: {
-                desc: desc
-            }
-        }).then((response) => {
-            if (this.state.desc === '') {
-                alert('Fields can not be empty..');
+            if (this.state.updateFlag) {
+                axios({
+                    method: "put",
+                    url: `http://localhost:5000/todos/${this.state.editId}`,
+
+                    data: {
+                        desc: this.state.desc
+                    }
+                }).then((response) => {
+                    let tempTodos = this.state.todos;
+                    for (let index = 0; index < tempTodos.length; index++) {
+                        if (tempTodos[index].id == this.state.editId) {
+                            tempTodos[index].desc = this.state.desc;
+                        }
+                    }
+                    this.setState({
+                        todos: tempTodos,
+                        desc: '',
+                        isUpdate: false,
+                        buttonText: "Add"
+                    })
+                }).catch((error)=>{
+                    alert(error);
+                })
             }
             else {
-                if (this.state.flag == 1) {
-                    let todos = this.state.todos;
-                    this.setState({
-                        todos: todos,
-                        flag: 0,
-                        desc: ''
-                    });
-                }
-                else {
+                let desc = this.state.desc;
+                axios({
+                    method: "post",
+                    url: "http://localhost:5000/todos",
+                    data: {
+                        desc: desc
+                    }
+                }).then((response) => {
                     let todo = response.data;
                     let todos = [...this.state.todos, todo];
                     this.setState({
                         desc: "",
                         todos: todos
                     });
-                }
-
+                }).catch((error)=>{
+                    alert(error);
+                })
             }
+        }
+    }
 
-        }).catch((err) => {
-            console.error(err);
-        })
-    };
-
-    onDelete = (id) => {
+    onDelete = (paramId) => {
         axios({
             method: "delete",
-            url: `http://localhost:5000/todos/${id}`
+            url: `http://localhost:5000/todos/${paramId}`
         }).then((response) => {
-            let todos = this.state.todos.filter((todo) => todo.id !== id);
+            let todos = this.state.todos.filter((todo) => todo.id !== paramId);
             this.setState({
                 todos: todos
             })
+        }).catch((error)=>{
+            alert(error);
         })
     }
 
-    onEdit = (id) => {
-        axios({
-            method: "put",
-            url: `http://localhost:5000/todos/${id}`
-        }).then((response) => {
-            let temp;
-            let tempTodos = this.state.todos.filter((todo) => todo.id === id);
-            for (let i = 0; i < tempTodos.length; i++) {
-                if (tempTodos[i].id === id) {
-                    temp = tempTodos[i].desc;
-                }
+    onEdit = (paramId) => {
+        let tempDesc
+        let todo = this.state.todos;
+        for (let index = 0; index < todo.length; index++) {
+            if (todo[index].id === paramId) {
+                tempDesc = todo[index].desc
             }
-            this.setState({
-                desc: temp,
-                todos: tempTodos
-            })
-
-            this.state.flag = 1;
-        })
+        }
+        this.setState({
+            desc: tempDesc,
+            buttonText: "update"
+        });
+        this.state.updateFlag = true;
+        this.state.editId = paramId
     }
+
     render() {
         return (
             <div>
-                <AddTodo desc={this.state.desc} onUserType={this.onUserType} onAddTodo={this.onAddTodo} />
+                <AddTodo desc={this.state.desc} buttonText={this.state.buttonText} onUserType={this.onUserType} onAddTodo={this.onAddTodo} />
                 <ListTodo todos={this.state.todos} onEdit={this.onEdit} onDelete={this.onDelete} />
             </div>
         );

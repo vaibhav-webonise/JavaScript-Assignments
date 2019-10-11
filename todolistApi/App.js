@@ -8,11 +8,11 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-      <Switch>
-        <Route exact path="/todo" component={Todo} />
-        <Route path="/" component={Home} />
-      </Switch>
-    </Router>
+        <Switch>
+          <Route exact path="/todo" component={Todo} />
+          <Route path="/" component={Home} />
+        </Switch>
+      </Router>
     );
   }
 }
