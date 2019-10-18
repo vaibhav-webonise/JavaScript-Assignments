@@ -2,7 +2,7 @@ import React from "react";
 import { AddTodo } from "./AddTodo";
 import { ListTodo } from "./ListTodo";
 import { connect } from 'react-redux'
-import { addTodo, deleteTodo } from '/home/webonise/reduxtodo/src/store/action/todoactions.js'
+import { saveTodo, deleteTodo, getData } from '/home/webonise/reduxtodo/src/store/action/todoactions.js'
 
 export class Todo extends React.Component {
     constructor(props) {
@@ -14,6 +14,10 @@ export class Todo extends React.Component {
             editId: 0,
             buttonText: "Add"
         };
+    }
+
+    componentDidMount() {
+        this.props.getData()
     }
 
     onUserType = event => {
@@ -89,8 +93,9 @@ const mapStatetoProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    addTodo: (todoId, text, flag) => dispatch(addTodo(todoId, text, flag)),
+    addTodo: (todoId, text, flag) => dispatch(saveTodo(todoId, text, flag)),
     deleteTodo: id => dispatch(deleteTodo(id)),
+    getData: () => dispatch(getData())
 
 })
 

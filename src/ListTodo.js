@@ -1,6 +1,6 @@
 import React from "react";
-export const ListTodo = (props) => {
 
+export const ListTodo = (props) => {
   return (
     <div>
       <table>
@@ -12,15 +12,13 @@ export const ListTodo = (props) => {
           </tr>
         </thead>
         <tbody>
-        
           {props.todos.map(todo => (
             <tr key={todo.id}>
               <td>{todo.id}</td>
               <td>{todo.desc}</td>
               <td>
-                <button onClick={props.onEdit.bind(null,todo.id)}>Edit</button>
+                <button onClick={props.onEdit.bind(null, todo.id)}>Edit</button>
                 <button onClick={props.onDelete.bind(null, todo.id)}>Delete</button>
-                
               </td>
             </tr>
           ))}
